@@ -1,0 +1,44 @@
+{
+  "name": "particle-wave",
+  "version": "0.1.0",
+  "description": "WebGL粒子波浪",
+  "author": "jekorx",
+  "main": "lib/particle-wave.js",
+  "private": false,
+  "scripts": {
+    "build": "webpack --config build/webpack.prod.conf.js",
+    "build:show": "webpack --config build/webpack.show.conf.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "babel-loader": "^8.0.5",
+    "uglifyjs-webpack-plugin": "^2.1.2",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
+  },
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jekorx/particle-wave.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jekorx/particle-wave/issues"
+  },
+  "homepage": "https://github.com/jekorx/particle-wave#readme",
+  "keywords": [
+    "particle",
+    "wave",
+    "particle-wave",
+    "webgl"
+  ],
+  "license": "MIT"
+}
