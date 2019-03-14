@@ -1,6 +1,5 @@
 # particle-wave
 [![npm package](screenshot/version.svg)](https://www.npmjs.com/package/particle-wave)
-> vue轮播卡片组件（vue carousel card component）
 ### 示例
 > [demo展示](https://jekorx.github.io/particle-wave)
 
