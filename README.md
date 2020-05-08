@@ -1,5 +1,5 @@
 # particle-wave
-[![npm package](screenshot/version.svg)](https://www.npmjs.com/package/particle-wave)
+[![npm package](https://img.shields.io/npm/v/particle-wave.svg)](https://www.npmjs.com/package/particle-wave)
 ### 示例
 > [demo展示](https://jekorx.github.io/particle-wave)
 
