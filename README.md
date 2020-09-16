@@ -33,7 +33,7 @@ import ParticleWave from 'particle-wave'
 // 小圆点尺寸
 const pointSize = 4
 
-new ParticleWave(document.getElementById('particle-wave'), {
+const pw = new ParticleWave(document.getElementById('particle-wave'), {
   uniforms: {
     size: { type: 'float', value: pointSize },
     field: { type: 'vec3', value: [0, 0, 0] },
@@ -58,4 +58,9 @@ new ParticleWave(document.getElementById('particle-wave'), {
     this.uniforms.size = (h / 400) * pointSize * dpi
   }
 })
+
+document.getElementById('clear').onclick = function () {
+  console.log('ParticleWave will clear', pw)
+  pw.clear()
+}
 ```
