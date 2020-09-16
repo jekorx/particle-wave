@@ -1,5 +1,5 @@
 export default class {
-  constructor(holder, options = {}) {
+  constructor (holder, options = {}) {
     options = Object.assign({
       antialias: false,
       depthTest: false,
@@ -109,17 +109,19 @@ export default class {
     this.update()
   }
 
-  mousemove(e) {
+  mousemove (e) {
     let x = e.pageX / this.width * 2 - 1
     let y = e.pageY / this.height * 2 - 1
 
     this.uniforms.mousemove = [x, y]
   }
 
-  resize(e) {
+  resize (e) {
     const holder = this.holder
     const canvas = this.canvas
     const gl = this.gl
+
+    if (!gl || !canvas || !holder) return
 
     const width = this.width = holder.offsetWidth
     const height = this.height = holder.offsetHeight
@@ -140,7 +142,7 @@ export default class {
     this.onResize(width, height, dpi)
   }
 
-  setProjection(aspect) {
+  setProjection (aspect) {
     const camera = this.camera
 
     if (camera.perspective) {
@@ -171,7 +173,7 @@ export default class {
     }
   }
 
-  createShader(type, source) {
+  createShader (type, source) {
     const gl = this.gl
     const shader = gl.createShader(type)
 
@@ -185,7 +187,7 @@ export default class {
     }
   }
 
-  createProgram(vertex, fragment) {
+  createProgram (vertex, fragment) {
     const gl = this.gl
 
     const vertexShader = this.createShader(gl.VERTEX_SHADER, vertex)
@@ -206,7 +208,7 @@ export default class {
     }
   }
 
-  createUniforms(data) {
+  createUniforms (data) {
     const gl = this.gl
     const uniforms = this.data.uniforms = data
     const values = this.uniforms = {}
@@ -226,7 +228,7 @@ export default class {
     })
   }
 
-  setUniform(name, value) {
+  setUniform (name, value) {
     const gl = this.gl
     const uniform = this.data.uniforms[name]
 
@@ -268,7 +270,7 @@ export default class {
     }
   }
 
-  updateUniforms() {
+  updateUniforms () {
     const uniforms = this.data.uniforms
     Object.keys(uniforms).forEach(name => {
       const uniform = uniforms[name]
@@ -276,7 +278,7 @@ export default class {
     })
   }
 
-  createBuffers(data) {
+  createBuffers (data) {
     const buffers = this.data.buffers = data
     const values = this.buffers = {}
 
@@ -297,7 +299,7 @@ export default class {
     })
   }
 
-  createBuffer(name, size) {
+  createBuffer (name, size) {
     const gl = this.gl
     const program = this.program
 
@@ -311,7 +313,7 @@ export default class {
     return buffer
   }
 
-  setBuffer(name, data) {
+  setBuffer (name, data) {
     const gl = this.gl
     const buffers = this.data.buffers
 
@@ -321,7 +323,7 @@ export default class {
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(data), gl.STATIC_DRAW)
   }
 
-  updateBuffers() {
+  updateBuffers () {
     const buffers = this.buffers
     Object.keys(buffers).forEach(name => {
       buffers[name] = name.data
@@ -330,7 +332,7 @@ export default class {
     this.setBuffer(null)
   }
 
-  createTexture(src) {
+  createTexture (src) {
     const gl = this.gl
     const texture = gl.createTexture()
 
@@ -345,7 +347,7 @@ export default class {
     }
   }
 
-  loadTexture(src) {
+  loadTexture (src) {
     const gl = this.gl
     const texture = this.texture
 
@@ -365,8 +367,9 @@ export default class {
     textureImage.src = src
   }
 
-  update() {
+  update () {
     const gl = this.gl
+    if (!gl) return
 
     const now = performance.now()
     const elapsed = (now - this.time.start) / 5000
@@ -384,4 +387,26 @@ export default class {
 
     requestAnimationFrame(this.update)
   }
+
+  clear () {
+    const gl = this.gl
+    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT | gl.STENCIL_BUFFER_BIT)
+    gl.getAttachedShaders(this.program).forEach(shader => {
+      gl.deleteShader(shader)
+    })
+    gl.deleteProgram(this.program)
+    Object.values(this.data.buffers).forEach(({ buffer }) => {
+      gl.deleteBuffer(buffer)
+    })
+    gl.deleteTexture(this.texture)
+    this.program = null
+    this.data = null
+    this.buffers = null
+    this.texture = null
+    this.camera = null
+    this.holder = null
+    this.canvas = null
+    this.gl = null
+  }
+
 }

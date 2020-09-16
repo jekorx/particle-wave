@@ -2,7 +2,7 @@ import ParticleWave from './index.js'
 
 const pointSize = 4
 
-new ParticleWave(document.getElementById('app'), {
+const pw = new ParticleWave(document.getElementById('app'), {
   uniforms: {
     size: { type: 'float', value: pointSize },
     field: { type: 'vec3', value: [0, 0, 0] },
@@ -27,3 +27,7 @@ new ParticleWave(document.getElementById('app'), {
     this.uniforms.size = (h / 400) * pointSize * dpi
   }
 })
+document.getElementById('clear').onclick = function () {
+  console.log('ParticleWave will clear', pw)
+  pw.clear()
+}
