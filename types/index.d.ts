@@ -51,6 +51,8 @@ declare const _default: {
     onUpdate?: (delta: number) => void,
     onResize?: (width: number, height: number, dpi: number) => void
   })
+
+  clear: () => void
 }
 
 export default _default
