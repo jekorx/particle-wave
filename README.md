@@ -52,10 +52,14 @@ const pw = new ParticleWave(document.getElementById('particle-wave'), {
         color.push(0, 1 - (x / width) * 1, 0.5 + x / width * 0.5, z / depth)
       }
     }
-    this.uniforms.field = [width, height, depth]
-    this.buffers.position = position
-    this.buffers.color = color
-    this.uniforms.size = (h / 400) * pointSize * dpi
+    if (this.uniforms) {
+      this.uniforms.field = [width, height, depth]
+      this.uniforms.size = (h / 400) * pointSize * dpi
+    }
+    if (this.buffers) {
+      this.buffers.position = position
+      this.buffers.color = color
+    }
   }
 })
 

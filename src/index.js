@@ -46,6 +46,8 @@ export default class {
       onResize: () => { }
     }, options)
 
+    if (!holder) return false
+
     const uniforms = Object.assign({
       time: { type: 'float', value: 0 },
       hasTexture: { type: 'int', value: 0 },
@@ -390,6 +392,8 @@ export default class {
 
   clear () {
     const gl = this.gl
+    const holder = this.holder
+    if (!gl || !holder) return
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT | gl.STENCIL_BUFFER_BIT)
     gl.getAttachedShaders(this.program).forEach(shader => {
       gl.deleteShader(shader)
