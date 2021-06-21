@@ -1,6 +1,6 @@
 {
   "name": "particle-wave",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "WebGL粒子波浪",
   "author": "jekorx",
   "main": "lib/particle-wave.js",

@@ -33,13 +33,14 @@ import ParticleWave from 'particle-wave'
 // 小圆点尺寸
 const pointSize = 4
 
+// with ts：const pw: typeof ParticleWave = new ParticleWave(...)
 const pw = new ParticleWave(document.getElementById('particle-wave'), {
   uniforms: {
     size: { type: 'float', value: pointSize },
     field: { type: 'vec3', value: [0, 0, 0] },
     speed: { type: 'float', value: 7 }
   },
-  onResize(w, h, dpi) {
+  onResize (w, h, dpi) {
     const position = []
     const color = []
     const width = 400 * (w / h)
