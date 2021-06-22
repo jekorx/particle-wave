@@ -33,7 +33,6 @@ import ParticleWave from 'particle-wave'
 // 小圆点尺寸
 const pointSize = 4
 
-// with ts：const pw: typeof ParticleWave = new ParticleWave(...)
 const pw = new ParticleWave(document.getElementById('particle-wave'), {
   uniforms: {
     size: { type: 'float', value: pointSize },

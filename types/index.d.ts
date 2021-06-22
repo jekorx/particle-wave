@@ -1,7 +1,7 @@
 declare module 'particle-wave'
 
-declare const _default: {
-  new(el: HTMLElement | null, options: {
+export default class ParticleWave {
+  constructor(el: HTMLElement | null, options: {
     antialias?: boolean,
     depthTest?: boolean,
     mousemove?: boolean,
@@ -54,5 +54,3 @@ declare const _default: {
 
   clear: () => void
 }
-
-export default _default
